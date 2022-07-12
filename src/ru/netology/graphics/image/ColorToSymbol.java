@@ -10,7 +10,7 @@ package ru.netology.graphics.image;
 public class ColorToSymbol implements TextColorSchema {
 //    private static char[] sym = {'▇', '●', '◉', '◍', '◎', '○', '☉', '◌', '-'};
 //    private static char[] sym = {'#', '$', '@', '%', '*', '+', '-', '\''};
-    private static char[] sym = {'@', '%', '$', '#', '+', '*', '-', '\''};
+    private static char[] sym = {'@', '■', '%', '$', '#', '+', '+', '*', '-', '\''};
     private static int n = sym.length;
     private static Double dNum;
     private static final double NUMBER_OF_COLORS = 256;
