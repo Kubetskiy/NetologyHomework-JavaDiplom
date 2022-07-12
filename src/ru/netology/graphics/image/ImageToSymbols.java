@@ -11,6 +11,10 @@ public class ImageToSymbols implements TextGraphicsConverter {
     private int maxHeight = 0;
     private double maxRatio = 0;
     private TextColorSchema schema = new ColorToSymbol();
+    private final int STRETCH_TWICE = 2; // 2 символа вместо 1
+    private final int STRETCH_TRIPLE = 3; // 3 символа вместо 1
+    private final int STRETCH = STRETCH_TRIPLE;
+
 
     @Override
     public String convert(String url) throws IOException, BadImageSizeException {
@@ -107,26 +111,19 @@ public class ImageToSymbols implements TextGraphicsConverter {
         // получить степень белого пикселя (int color выше) и по ней
         // получить соответствующий символ c. Логикой превращения цвета
         // в символ будет заниматься другой объект, который мы рассмотрим ниже
-        char[][] characters = new char[newWidth][newHeight];
         StringBuilder sb = new StringBuilder();
+        char c;
 
-        for (int w = 0; w < newWidth; w++) {
-            for (int h = 0; h < newHeight; h++) {
-                int color = bwRaster.getPixel(w, h, new int[3])[0];
-                char c = schema.convert(color);
+        for (int row = 0; row < newHeight; row++) {
+            for (int column = 0; column < newWidth; column++) {
+                int color = bwRaster.getPixel(column, row, new int[3])[0];
                 //запоминаем символ c, например, в двумерном массиве или как-то ещё на ваше усмотрение
-                characters[w][h] = c;
-            }
-        }
-        // Осталось собрать все символы в один большой текст
-        // Для того, чтобы изображение не было слишком узким, рекомендую
-        // каждый пиксель превращать в два повторяющихся символа, полученных
-        // от схемы.
-        for (int h = 0; h < newHeight; h++) {
-            for (int w = 0; w < newWidth; w++) {
-                sb.append(characters[w][h]);
-                sb.append(characters[w][h]);
-                sb.append(characters[w][h]);
+                c = schema.convert(color);
+                // Осталось собрать все символы в один большой текст
+                // Для того, чтобы изображение не было слишком узким, рекомендую
+                // каждый пиксель превращать в два повторяющихся символа, полученных
+                // от схемы.
+                sb.append(String.valueOf(c).repeat(STRETCH));
             }
             sb.append('\n');
         }
