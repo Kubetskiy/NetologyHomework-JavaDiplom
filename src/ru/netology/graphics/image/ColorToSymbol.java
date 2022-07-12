@@ -8,16 +8,15 @@ package ru.netology.graphics.image;
  * d = color/n
  */
 public class ColorToSymbol implements TextColorSchema {
-//    private static char[] sym = {'▇', '●', '◉', '◍', '◎', '○', '☉', '◌', '-'};
-//    private static char[] sym = {'#', '$', '@', '%', '*', '+', '-', '\''};
-    private static char[] sym = {'@', '■', '%', '$', '#', '+', '+', '*', '-', '\''};
-    private static int n = sym.length;
-    private static Double dNum;
+    //    private static char[] sym = {'▇', '●', '◉', '◍', '◎', '○', '☉', '◌', '-'};
+    //    private static char[] sym = {'#', '$', '@', '%', '*', '+', '-', '\''};
+    private static final char[] SCHEMA_SYMBOLS = {'@', '■', '%', '$', '#', '+', '+', '*', '-', '\''};
+    private static final int SCHEMA_LENGTH = SCHEMA_SYMBOLS.length;
     private static final double NUMBER_OF_COLORS = 256;
 
     @Override
     public char convert(int color) {
-        dNum = (n / NUMBER_OF_COLORS) * color;
-        return sym[dNum.intValue()];
+        double dNum = (SCHEMA_LENGTH / NUMBER_OF_COLORS) * color;
+        return SCHEMA_SYMBOLS[(int) dNum];
     }
 }

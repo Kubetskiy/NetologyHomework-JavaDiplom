@@ -46,7 +46,7 @@ public class ImageToSymbols implements TextGraphicsConverter {
                 if (maxWidth > 0 && maxHeight > 0) { // Присутствуют оба ограничения, по высоте и ширине
                     if (imgRatio >= (double) maxWidth / (double) maxHeight) {
                         newWidth = maxWidth;
-                        newHeight = (int )(newWidth / imgRatio);
+                        newHeight = (int) (newWidth / imgRatio);
                     } else {
                         newHeight = maxHeight;
                         newWidth = (int) (newHeight * imgRatio);
@@ -58,7 +58,7 @@ public class ImageToSymbols implements TextGraphicsConverter {
                 }
                 if (maxHeight == 0) {  // Задана только максимальная ширина
                     newWidth = maxWidth;
-                    newHeight = (int )(newWidth / imgRatio);
+                    newHeight = (int) (newWidth / imgRatio);
                 }
             }
         }
@@ -124,6 +124,7 @@ public class ImageToSymbols implements TextGraphicsConverter {
         // от схемы.
         for (int h = 0; h < newHeight; h++) {
             for (int w = 0; w < newWidth; w++) {
+                sb.append(characters[w][h]);
                 sb.append(characters[w][h]);
                 sb.append(characters[w][h]);
             }
