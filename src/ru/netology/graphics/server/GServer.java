@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 /**
  * Сервер уже за вас написан, его трогать не надо :)
-*/
+ */
 public class GServer {
     public static final int PORT = 8888;
 
